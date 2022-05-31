@@ -6,8 +6,12 @@ import name_replace
 
 # 多改多
 if __name__ == '__main__':
-    list = ["软件192嘻嘻嘻", "软件182嘻嘻嘻"]
-    list1 = ["啊啊啊", "苏苏苏"]
+    # 需要的文件名
+    list = []
+    # 要在word 内替换进去的文字
+    list1 = []
+    # 要在word 内替换进去的文字
+    list2 = []
     # 文件所在文件夹路径 作业文件放到doc文件夹下即可
     path = r'C:\Users\86413\PycharmProjects\pythonProject3\doc'
     filelist = os.listdir(path)
@@ -21,20 +25,22 @@ if __name__ == '__main__':
         i = 0
         print(list[k])
         # 创建一个以list[k]为名字的文件夹
-        folder = path + '/' + list[k] + '/'
+        folder = r'C:\Users\86413\PycharmProjects\pythonProject3\target' + '/' + list[k] + '/'
         print(folder)
         if not os.path.exists(folder):
             os.makedirs(folder)
         for s in filelist:
             oldname = path + os.sep + filelist[i]
-            print(oldname)
+            # print(oldname)
             pos = oldname.find('.')
             # 新的文件名 注意实验不能超过十,即该处自动取原名字的最后一位作为编号，如果oldname[:3]即取前三位
-            newname = list[0] + oldname[pos - 1]
-            print(newname)
+            newname = filelist[i][:3] + list[k]
+            # print(filelist[i][:3])
+            # print(newname)
             username = name_replace.replace_name(folder, oldname, newname)
             print(username)
-            # 需要修改的字符串 , 如果有多处，多写两个就行了
+            # 需要被修改的字符串 , 如果有多处，多写两个就行了
             doc_replace.replace_doc("xxx", list1[k], username)
+            doc_replace.replace_doc("xxxx", list2[k], username)
             i += 1
         k += 1
